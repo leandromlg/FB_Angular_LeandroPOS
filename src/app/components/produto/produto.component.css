@@ -1,0 +1,34 @@
+.fa-remove{
+    margin-right: 10px; 
+    color:crimson;
+}
+
+.secondary-content {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.input-field label {
+    color: #737373;
+}
+
+.input-field input[type=text]:focus + label {
+    color: #737373;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #737373;
+    box-shadow: 0 1px 0 0 #737373;
+}
+  
+.input-field .prefix {
+    color: #9575cd;
+}
+
+.input-field .prefix.active {
+    color: #737373;
+}

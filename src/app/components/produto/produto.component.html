@@ -1,0 +1,49 @@
+<div class="card" style="margin-top: 16px;">
+    <div class="card-content">
+        <span class="card-title">Novo produto</span>
+        <form (ngSubmit)="addItem()" class="col s6">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input type="text" [(ngModel)]="produto.codigo" name="codigo" />
+                    <label for="title">Codigo</label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="text" [(ngModel)]="produto.description" name="description" />
+                    <label for="description">Descrição</label>
+                </div>
+                <input type="submit" value="Salvar" class="btn black darken-2" />
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="produtos?.length > 0;else noItems">
+    <ul *ngFor="let produto of produtos" class="collection">
+        <li class="collection-produto">
+            <strong>{{produto.codigo}}: </strong>
+            {{produto.description}}
+            <button type="button" class="secondary-content">
+                <i (click)="deleteItem($event, produto)" class="fa fa-trash" style="color: #d32f2f; margin-right: 8px;"></i>
+                <i (click)="editItem($event, produto)" class="fa fa-pencil" style="color: orange;"></i>
+            </button>
+            <div *ngIf="editState && produtoToEdit.id == produto.id">
+                <form (ngSubmit)="updateItem(produto)">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Add codigo" [(ngModel)]="produto.codigo" name="codigo"/>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" placeholder="Add description" [(ngModel)]="produto.description" name="description"/>
+                        </div>
+                        <input type="submit" value="Update" class="btn orange" />
+                        <button (click)="deleteItem($event, produto)" class="btn red">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<ng-template #noItems>
+    <hr/>
+    <h5>Não há produtos na lista</h5>
+</ng-template>
